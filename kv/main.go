@@ -60,8 +60,11 @@ func main() {
 	server := server.NewServer(storage)
 
 	var alivePolicy = keepalive.EnforcementPolicy{
-		MinTime:             2 * time.Second, // If a client pings more than once every 2 seconds, terminate the connection
-		PermitWithoutStream: true,            // Allow pings even when there are no active streams
+		// If a client pings more than once every 2 seconds,
+		// terminate the connection
+		MinTime: 2 * time.Second,
+		// Allow pings even when there are no active streams
+		PermitWithoutStream: true,
 	}
 
 	grpcServer := grpc.NewServer(
